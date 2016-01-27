@@ -1,8 +1,10 @@
 #include <unistd.h>
-#include <linux/reboot.h>
+#include <sys/reboot.h>
+#include <stdio.h>
 
 int main(int argc, char *argv[])
 {
-    reboot(LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2, LINUX_REBOOT_CMD_RESTART, NULL);
-    return 0;
+	int retval = reboot(RB_AUTOBOOT);
+	if(retval != 0) perror("reboot failed");
+	return retval;
 }
