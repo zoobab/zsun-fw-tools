@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo "** Building firmware"
+. ./makefirmware
+
+UPDATEFILE=${MODEL}-update.tar.gz
+
+echo -n "** Switching mode..."
+curl http://10.168.168.1:8080/goform/Setcardworkmode?workmode=0
+echo
+
+echo "** Uploading firmware"
+while ! smbclient \\\\10.168.168.1\\public -U Admin%xxx -c "mkdir .update ; cd .update ; put ${UPDATEFILE}"; do
+    echo -n "!! smbclient failed, retrying ... "
+    sleep 3
+done
+
+echo -n "** Now doing system update ... "
+curl http://10.168.168.1:8080/goform/upFirmWare
+
+echo '** If command above returned {"status":2} your device should now blink for a while and then reboot'

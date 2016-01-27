@@ -1,0 +1,2 @@
+openwrt-ar71xx-generic-zsun-sdreader-kernel.bin:S:/dev/mtd3
+openwrt-ar71xx-generic-zsun-sdreader-rootfs-squashfs.bin:S:/dev/mtd2

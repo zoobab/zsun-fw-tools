@@ -1,0 +1,10 @@
+#!/bin/bash
+
+VERSION=${VERSION:-1.1}
+MODEL=${MODEL:-SD100}
+OUTDIR=${OUTDIR:-$(dirname $0)}
+DATADIR=${DATADIR:-$(dirname $0)/data}
+
+tar zcvf $OUTDIR/intermediate-v${VERSION}.tar.gz -C $DATADIR .
+md5sum $OUTDIR/intermediate-v${VERSION}.tar.gz | cut -d ' ' -f 1 > md5
+tar zcvf $OUTDIR/${MODEL}-update.tar.gz $OUTDIR/intermediate-v${VERSION}.tar.gz md5

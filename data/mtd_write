@@ -1,0 +1,10 @@
+#!/bin/sh
+
+cp ./minreboot /tmp
+chmod +x /tmp/minreboot
+
+./mtd_write.actual write openwrt-ar71xx-generic-zsun-sdreader-kernel.bin /dev/mtd3
+./mtd_write.actual write openwrt-ar71xx-generic-zsun-sdreader-rootfs-squashfs.bin /dev/mtd2
+
+/tmp/minreboot
+# aaaaand there we go ,_,
