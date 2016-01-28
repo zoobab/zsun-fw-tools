@@ -1,3 +1,10 @@
+/**
+ * Minimal reboot binary
+ *
+ * Build with:
+ *	 gcc minreboot.c -o minreboot -static -s
+ */
+
 #include <unistd.h>
 #include <sys/reboot.h>
 #include <stdio.h>
